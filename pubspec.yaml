@@ -10,8 +10,11 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.8
+  # Para pegar as versões mais novas, rode:
+  # flutter pub add firebase_core firebase_auth shared_preferences
   firebase_core: ^4.0.0
   firebase_auth: ^6.0.0
+  shared_preferences: ^2.3.0
 
 dev_dependencies:
   flutter_test:
