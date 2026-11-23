@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../models/app_user.dart';
 import '../services/auth_service.dart';
+import '../services/user_prefs_service.dart';
 import '../utils/firebase_erros.dart';
 import '../utils/validators.dart';
 
@@ -41,11 +43,21 @@ class _RegisterPageState extends State<RegisterPage> {
       final nome = _nomeCtrl.text.trim();
       final email = _emailCtrl.text.trim();
 
-      // Cria a conta no Firebase Auth.
+      // 1) Cria a conta no Firebase Auth.
       await AuthService.instance.cadastrar(
         nome: nome,
         email: email,
         senha: _senhaCtrl.text,
+      );
+
+      // 2) Salva os dados no aparelho (substitui o cadastro anterior).
+      await UserPrefsService().salvar(
+        AppUser(
+          nome: nome,
+          email: email,
+          telefone: _telefoneCtrl.text.replaceAll(RegExp(r'\D'), ''),
+          dataCadastro: DateTime.now(),
+        ),
       );
 
       if (!mounted) return;
