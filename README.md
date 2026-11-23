@@ -66,3 +66,31 @@ test/
 - Padrão de trabalho: commits pequenos com mensagens em português, no imperativo, explicando o que mudou, e uma tag por etapa (`etapa-1`, `etapa-2`...).
 
 ---
+
+## Etapa 1 — Login e Cadastro
+
+**Tag:** `etapa-1`
+
+**O que foi feito**
+- Projeto ligado ao Firebase com `firebase_core` e `flutterfire configure`.
+- Autenticação por e-mail e senha com `firebase_auth`, seguindo o modelo da documentação do Firebase Auth.
+- **Tela de login:** e-mail, senha (com botão de mostrar/ocultar), "Esqueci minha senha" (envia e-mail de redefinição) e link para o cadastro.
+- **Tela de cadastro:** nome, e-mail, telefone (opcional), senha e confirmação de senha. O nome é gravado no perfil do Firebase (`displayName`).
+- Validação de todos os campos antes de chamar o Firebase e tradução dos erros do Firebase para português (e-mail já usado, senha fraca, credenciais inválidas, sem internet...).
+- `AuthGate`: um `StreamBuilder` escuta `authStateChanges()` e troca sozinho entre a tela de login e a tela principal.
+- Levantamento de requisitos e histórias de usuário na **wiki** do projeto.
+
+**Prints**
+
+| Login | Cadastro | Erro de validação |
+|---|---|---|
+| ![Login](docs/prints/etapa1-login.png) | ![Cadastro](docs/prints/etapa1-cadastro.png) | ![Erro](docs/prints/etapa1-erro.png) |
+
+**Vídeo:** https://youtu.be/LINK-ETAPA-1
+
+**Declaração de uso de IA (Etapa 1)**
+> PREENCHER COM SUAS PALAVRAS. Exemplo de estrutura:
+> - **Usei IA?** Sim — Claude (Anthropic), modelo Claude Opus 5.5, em 23/11/2026.
+> - **Para quê:** gerar uma base para as telas de login e cadastro e para o serviço de autenticação, e tirar dúvidas sobre o Firebase Auth.
+> - **O que ela sugeriu:** separar o acesso ao Firebase em um `AuthService`, usar um `AuthGate` com `authStateChanges()`, validar os campos com `Form`/`validator` e traduzir os códigos de erro (incluindo `invalid-credential`).
+> - **O que alterei / aprendi:** (descrever o que você mudou, testou e entendeu — ex.: por que o cadastro já deixa o usuário logado, o que é um `Stream`, por que verificar `mounted` depois de um `await`).
