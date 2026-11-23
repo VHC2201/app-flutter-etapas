@@ -94,3 +94,35 @@ test/
 > - **Para quê:** gerar uma base para as telas de login e cadastro e para o serviço de autenticação, e tirar dúvidas sobre o Firebase Auth.
 > - **O que ela sugeriu:** separar o acesso ao Firebase em um `AuthService`, usar um `AuthGate` com `authStateChanges()`, validar os campos com `Form`/`validator` e traduzir os códigos de erro (incluindo `invalid-credential`).
 > - **O que alterei / aprendi:** (descrever o que você mudou, testou e entendeu — ex.: por que o cadastro já deixa o usuário logado, o que é um `Stream`, por que verificar `mounted` depois de um `await`).
+
+---
+
+## Etapa 2 — Tela principal
+
+**Tag:** `etapa-2`
+
+**O que foi feito**
+- **SharedPreferences** (`shared_preferences`) para salvar os dados do usuário no aparelho: nome, e-mail, telefone e data do cadastro, guardados como JSON em uma única chave (`usuario_atual`). **A cada novo cadastro o registro anterior é substituído**, já que esse armazenamento é simples e limitado.
+- A senha **não** é salva no aparelho: o SharedPreferences não é criptografado e quem confere a senha é o Firebase.
+- A tela de login preenche automaticamente o e-mail do último cadastro salvo.
+- **Drawer navigation** (menu lateral) com cabeçalho mostrando nome, e-mail e iniciais do usuário, e as opções *Início*, *Meus dados*, *Sobre* e *Sair* (com confirmação).
+- **Tela principal em branco**, acessada após o login, com o menu lateral.
+- *Meus dados* mostra o que está salvo no SharedPreferences.
+- Testes automatizados para as validações e para o serviço de SharedPreferences (incluindo o teste "novo cadastro substitui o anterior").
+
+**Prints**
+
+| Home (em branco) | Drawer aberto | Meus dados |
+|---|---|---|
+| ![Home](docs/prints/etapa2-home.png) | ![Drawer](docs/prints/etapa2-drawer.png) | ![Meus dados](docs/prints/etapa2-meus-dados.png) |
+
+**Vídeo:** https://youtu.be/LINK-ETAPA-2
+
+**Declaração de uso de IA (Etapa 2)**
+> PREENCHER COM SUAS PALAVRAS. Exemplo de estrutura:
+> - **Usei IA?** Sim — Claude (Anthropic), modelo Claude Opus 5.5, em 23/11/2026.
+> - **Para quê:** estruturar o salvamento com SharedPreferences, o Drawer e os testes.
+> - **O que ela sugeriu:** guardar o usuário como JSON em uma chave só (para substituir o anterior), não salvar a senha, montar o Drawer com `UserAccountsDrawerHeader` e testar com `SharedPreferences.setMockInitialValues`.
+> - **O que alterei / aprendi:** (descrever).
+>
+> Referência (ABNT): ANTHROPIC. *Claude Opus 5.5*. [Modelo de linguagem]. San Francisco: Anthropic, 2026. Disponível em: https://claude.ai. Acesso em: 23 nov. 2026.
