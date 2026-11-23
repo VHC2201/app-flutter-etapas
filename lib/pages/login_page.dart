@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../services/auth_service.dart';
+import '../services/user_prefs_service.dart';
 import '../utils/firebase_erros.dart';
 import '../utils/validators.dart';
 import 'register_page.dart';
@@ -20,6 +21,21 @@ class _LoginPageState extends State<LoginPage> {
 
   bool _carregando = false;
   bool _ocultarSenha = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _preencherEmailSalvo();
+  }
+
+  /// Se já existe um cadastro salvo no aparelho, sugere o e-mail dele.
+  Future<void> _preencherEmailSalvo() async {
+    final usuario = await UserPrefsService().carregar();
+    if (!mounted || usuario == null) return;
+    if (_emailCtrl.text.isEmpty) {
+      _emailCtrl.text = usuario.email;
+    }
+  }
 
   @override
   void dispose() {
