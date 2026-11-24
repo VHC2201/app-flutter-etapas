@@ -1,6 +1,19 @@
 {
   "version": "0.2.0",
   "configurations": [
-    { "name": "App Etapas", "request": "launch", "type": "dart", "program": "lib/main.dart" }
+    {
+      "name": "App Etapas (navegador - porta 8080)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "deviceId": "web-server",
+      "args": ["--web-port", "8080"]
+    },
+    {
+      "name": "App Etapas (escolher dispositivo)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart"
+    }
   ]
 }
