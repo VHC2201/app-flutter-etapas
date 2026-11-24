@@ -1,0 +1,12 @@
+{
+  "name": "App Etapas",
+  "short_name": "App Etapas",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#3F51B5",
+  "theme_color": "#3F51B5",
+  "description": "App Flutter + Firebase por etapas (UNIPAR)",
+  "orientation": "portrait-primary",
+  "prefer_related_applications": false,
+  "icons": []
+}
